@@ -20,6 +20,7 @@ public class Solution {
         return answer;
     }
 
+
     private static String kJimsu(int n, int k) {
         int num = n;
         StringBuilder result = new StringBuilder();
