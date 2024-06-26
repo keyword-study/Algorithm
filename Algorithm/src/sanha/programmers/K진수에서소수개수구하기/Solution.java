@@ -5,6 +5,7 @@ public class Solution {
         String kJinsu = kJimsu(n, k);
         return countSosu(kJinsu);
     }
+
     private static int countSosu(String data){
         System.out.println("data = " + data);
         int answer =0;
