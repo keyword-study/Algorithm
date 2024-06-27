@@ -1,4 +1,4 @@
-package 뉴스클러스터링;
+package sanha.programmers.newsClustering;
 
 import java.util.ArrayList;
 import java.util.HashSet;

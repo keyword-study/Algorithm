@@ -1,4 +1,4 @@
-package cash;
+package sanha.programmers.cash;
 
 import java.util.ArrayList;
 
