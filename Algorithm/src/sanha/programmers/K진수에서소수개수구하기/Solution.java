@@ -1,9 +1,12 @@
 package sanha.programmers.K진수에서소수개수구하기;
 
 public class Solution {
+    public class Main {
+
     public int solution(int n, int k) {
         String kJinsu = kJimsu(n, k);
         return countSosu(kJinsu);
+
     }
 
     private static int countSosu(String data){
