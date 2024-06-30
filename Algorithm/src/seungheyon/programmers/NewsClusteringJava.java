@@ -1,15 +1,17 @@
 package seungheyon.programmers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NewsClusteringJava {
-    public static void main(String[] args) {
-        String str1 = "aaabbcccccccc";
-        String str2 = "aaaabbcccc";
-        int result = solution(str1, str2);
-        System.out.println(result); // Example usage
-    }
+//    public static void main(String[] args) {
+//        String str1 = "aaabbcccccccc";
+//        String str2 = "aaaabbcccc";
+//        int result = solution(str1, str2);
+//        System.out.println(result); // Example usage
+//    }
 
     public static int solution(String str1, String str2) {
         str1 = str1.toUpperCase();
@@ -42,21 +44,9 @@ public class NewsClusteringJava {
 
         int sum = unionSet.size();
 
+        Map<String,Integer> intersectionMap = new HashMap<>();
 
-        int sub = 0;
-        for(String string1 : str1Set){
-            for(String string2 : str2Set){
-                if(string1.equals(string2)){
-                    sub ++;
-                    str1Set.remove(string1);
-                    str2Set.remove(string2);
-                }
-            }
-        }
 
-//        str2Set.retainAll(str1Set);
-//        str1Set.retainAll(str2Set);
-//        int sub = Math.min(str1Set.size(), str2Set.size());
 
         double ja = (double) sub / (sum-sub);
         int intJa = (int) (ja * 65536);
