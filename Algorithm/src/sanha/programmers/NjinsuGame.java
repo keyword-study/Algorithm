@@ -3,24 +3,32 @@ package sanha.programmers;
 import sanha.programmers.K진수에서소수개수구하기.Solution;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NjinsuGame {
     public static void main(String[] args) {
         NjinsuGame n = new NjinsuGame();
         //진법 n, 미리 구할 숫자의 갯수 t, 게임에 참가하는 인원 m, 튜브의 순서 p
-        //System.out.println("solution = " + n.solution(2, 4, 2, 1));
+        //System.out.println("solution = " + n.solution(16, 1000, 1000, 99));
+       // System.out.println("solution = " + n.solution_1(16, 16, 2, 2));
+        System.out.println("solution = " + n.solution_1(2, 4, 2, 1));
+       // System.out.println("solution = " + n.solution(16, 1000, 100, 100));
+        //System.out.println(nJinsu(8, 26091).equals("62753"));
+        //System.out.println(nJinsu(16, 26091).equals("65EB"));
+        //System.out.println(nJinsu(2, 26091).equals("110010111101011"));
         //System.out.println("solution = " + n.solution(16, 16, 2, 1));
-        //System.out.println("solution = " + n.solution(16, 16, 2, 2));
+       // String tmp = Integer.toString(15, 16).toUpperCase();
+       // System.out.println("tmp = " + tmp);
     }
     public String solution(int n, int t, int m, int p) {
         ArrayList<String> integers = makeUseNumbers(n, t, m);
          return process(integers,t, m, p);
     }
 
-    public static String process(ArrayList<String> arrayList, int t,int m,int p){
+    public static String process(ArrayList<String> arrayList,int t,int m,int p){
         String result = "";
         int cnt =0;
-        for(int i=0; i < t*m; i++){
+        for(int i=0; i < arrayList.size(); i++){
             cnt++;
             if(cnt == p){
                 result += arrayList.get(i);
@@ -29,57 +37,35 @@ public class NjinsuGame {
                 cnt = 0;
             }
         }
-        return result;
+        return result.substring(0,t);
     }
 
     public static ArrayList<String> makeUseNumbers (int n, int t, int m){
+        int i = 0;
         ArrayList<String> result = new ArrayList<>();
-        int cnt = 0;
-        while(!(result.size() > t * m)){
-            String[] split = nJinsu(n, cnt).split("");
-            for(String s : split){
-                result.add(s);
-            }
-            cnt++;
+        while(result.size() > t*m){
+            String[] split = Integer.toString(i,n).toUpperCase().split("");
+            result.addAll(Arrays.asList(split));
+            i++;
         }
         return result;
     }
 
-    public static String nJinsu(int nJinsu, int number){
-        StringBuilder result = new StringBuilder();
-        while(number / nJinsu != 0){
-            int jinsu = number % nJinsu;
-            if(jinsu > 9 && nJinsu == 16){
-                result.append(makeABCDEF(jinsu));
-            }else{
-                System.out.println("jinsu = " + jinsu);
-                result.append(jinsu);
+    public String solution_1(int n,int t, int m,int p){
+        String result = "";
+        int cnt =0;
+        for(int i=0; i< t*m; i++){
+            String[] split = Integer.toString(i,n).toUpperCase().split("");
+            for(int j=0; j<split.length; j++) {
+                cnt ++;
+                if(cnt == p){
+                    result +=split[j];
+                }
+                if(cnt == m){
+                    cnt = 0;
+                }
             }
-            number = number / nJinsu;
         }
-        if(nJinsu == 16 && number > 9){
-            result.append(makeABCDEF(number));
-        }else{
-            result.append(number);
-        }
-        return result.reverse().toString();
-    }
-
-    public static String makeABCDEF(int num){
-        return switch (num) {
-            case 10 -> "A";
-            case 11 -> "B";
-            case 12 -> "C";
-            case 13 -> "D";
-            case 14 -> "E";
-            case 15 -> "F";
-            default -> null;
-        };
-    }
-    public static boolean isABCDEF(String s){
-         if(s.equals("A") || s.equals("B") || s.equals("C") || s.equals("D") || s.equals("E")|| s.equals("F")){
-            return true;
-        }
-         return false;
+        return result.substring(0,t);
     }
 }
